@@ -1,0 +1,45 @@
+
+#jumbo {
+	background-color: #fa5975;
+	height: 350px;
+	color: white;
+	font-family: cursive;
+}
+
+#navBar {
+	background-color: #fa5975;
+	color: white;
+	font-family: cursive;
+}
+#start{
+	
+}
+
+#questionContainer {
+		display: none;
+}
+#gameResult{ 
+	display: none;
+
+ }
+
+ #gameStatistics {
+ 	margin-top: 15px;
+ 	display: none;
+ }
+#option2 { 
+margin-top: 10px;
+ }
+
+ #option3 { 
+	margin-top: 10px;
+  }
+
+  #timerContainer {
+  		display: none;
+  	
+  }
+
+ .inline {
+  	display: inline;
+  }
