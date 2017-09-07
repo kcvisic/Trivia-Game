@@ -1,12 +1,17 @@
+let DEFAULT_TIMER = 10;
+
 var triviaGame = {
     triviaQuestions: [],
     answeredCorrectly: 0,
     answeredIncorrectly: 0,
     questionsUnanswered: 0,
-    timer: 0,
+    time: DEFAULT_TIMER,
+    intervalId: null,
     questionNumber: 0,
 
 }
+
+
 
 
 function createsTriviaQuestion(question, answer, choices) {
@@ -39,6 +44,9 @@ function DisplayQuestion(question) {
     $("#option3").text(question.choices[2]);
     $("#questionContainer").css("display", "initial");
     $("#timerContainer").css("display", "initial");
+     $("#gameResult").css("display","none");
+    timer();
+
 }
 
 function handleAnswerClick(index) {
@@ -46,44 +54,109 @@ function handleAnswerClick(index) {
     var questionNumber = triviaGame["questionNumber"];
     var currentQuestion = triviaGame.triviaQuestions[questionNumber];
     var correctIndex = currentQuestion.answer;
-     
+
 
     if (correctIndex === index) {
         $("#questionContainer").css("display", "none");
         $("#gameResult").css("display", "initial");
         $("#correctOrIncorrect").text("Correct!");
+        triviaGame.answeredCorrectly++
+      $("#displayCorrect").css("display","none");
+
 
 
     } else {
         $("#questionContainer").css("display", "none");
         $("#gameResult").css("display", "initial");
         $("#correctOrIncorrect").text("Nope!");
+          $("#displayCorrect").css("display","initial");
         $("#displayCorrect").text(currentQuestion.choices[correctIndex]);
+        
+
+        triviaGame.answeredIncorrectly++
+
+
+
     }
 
     triviaGame.questionNumber++;
-    stop()
+    stopTimer();
+
+    setTimeout(function() {
+        resetTimer();
+        DisplayQuestion(triviaGame.triviaQuestions[++questionNumber]);
+       
+    }, 5000);
 }
 
-var time = 30;
-var intervalId;
 
-function timer(){
- intervalId = setInterval(decrement, 1000);
-}
-function decrement(){
-    time--;
 
-    $("#timer").text(time);
-     if (time === 0){
-        stop();
-     }
+function timer() {
+    triviaGame.intervalId = setInterval(decrement, 1000);
 }
 
-function stop(){
-    clearInterval(intervalId)
+function decrement() {
+    triviaGame.time--;
+
+    $("#timer").text(triviaGame.time);
+    if (triviaGame.time === 0) {
+        stopTimer();
+
+
+        var questionNumber = triviaGame["questionNumber"];
+        var currentQuestion = triviaGame.triviaQuestions[questionNumber];
+        var correctIndex = currentQuestion.answer;
+
+
+        $("#questionContainer").css("display", "none");
+        $("#gameResult").css("display", "initial");
+        $("#correctOrIncorrect").text("Nope!");
+        $("#displayCorrect").text(currentQuestion.choices[correctIndex]);
+
+        triviaGame.questionsUnanswered++
+
+            setTimeout(function() {
+                resetTimer();
+                DisplayQuestion(triviaGame.triviaQuestions[++questionNumber]);
+                  
+
+
+            }, 5000);
+    }
+
 }
-timer();
+
+
+function resetTimer() {
+
+    triviaGame.time = DEFAULT_TIMER;
+    triviaGame.intervalId = null
+}
+
+
+
+function stopTimer() {
+    clearInterval(triviaGame.intervalId)
+
+}
+
+/*function gameStatistics(){
+      var questionNumber = triviaGame["questionNumber"];
+        var currentQuestion = triviaGame.triviaQuestions[questionNumber];
+        
+        if(triviaGame.questionNumber === 9){
+         $("#gameResult").css("display", "none");
+        $("#questionContainer").css("display", "none");
+        $("#timerContainer").css("display", "none");
+        $("#gameStatistics").css("display", "initial");
+        $("#correctAnswers").text(triviaGame.answeredCorrectly);
+        $("#InCorrectAnswers").text(triviaGame.answeredIncorrectly);
+        $("#unAnswered").text(triviaGame.questionsUnanswered);
+        
+    }
+}*/
+
+
 
 $(function() {
 
@@ -95,17 +168,17 @@ $(function() {
 
     $("#option1").on("click", function() {
         handleAnswerClick(0);
-        
+
     });
 
     $("#option2").on("click", function() {
         handleAnswerClick(1);
-        
+
     });
 
     $("#option3").on("click", function() {
         handleAnswerClick(2);
-        
+
     });
 
 })
