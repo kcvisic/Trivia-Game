@@ -20,6 +20,7 @@ function createsTriviaQuestion(question, answer, choices) {
         answer: answer,
         choices: choices,
     }
+
 }
 
 triviaGame.triviaQuestions.push(createsTriviaQuestion("Batman", 1, ["Matt Murdock", "Bruce Wayne", "Scott Summers"]));
@@ -31,7 +32,7 @@ triviaGame.triviaQuestions.push(createsTriviaQuestion("Robin", 0, ["Dick Grayson
 triviaGame.triviaQuestions.push(createsTriviaQuestion("Cyclops", 1, ["Arthur Curry", "Scott Summers", "Clark Kent"]));
 triviaGame.triviaQuestions.push(createsTriviaQuestion("Aquaman", 0, ["Arthur Curry", "Bruce Wayne", "Scott Summers"]));
 triviaGame.triviaQuestions.push(createsTriviaQuestion("Green Lantern", 2, ["Matt Murdock", "Steve Rogers", "John Stewart"]));
-triviaGame.triviaQuestions.push(createsTriviaQuestion("Daredevil", 0, ["Matt Murdock", "Steve Rogers", "John Stewart"]));
+triviaGame.triviaQuestions.push(createsTriviaQuestion("Daredevil", 0, ["Matt Murdock", "Steve Rogers", "John Stewart"])); 
 
 
 // display question and choices hide answer
@@ -44,10 +45,10 @@ function DisplayQuestion(question) {
     $("#option3").text(question.choices[2]);
     $("#questionContainer").css("display", "initial");
     $("#timerContainer").css("display", "initial");
-     $("#gameResult").css("display","none");
+    $("#gameResult").css("display", "none");
     timer();
 
-}
+};
 
 function handleAnswerClick(index) {
 
@@ -61,7 +62,7 @@ function handleAnswerClick(index) {
         $("#gameResult").css("display", "initial");
         $("#correctOrIncorrect").text("Correct!");
         triviaGame.answeredCorrectly++
-      $("#displayCorrect").css("display","none");
+            $("#displayCorrect").css("display", "none");
 
 
 
@@ -69,9 +70,8 @@ function handleAnswerClick(index) {
         $("#questionContainer").css("display", "none");
         $("#gameResult").css("display", "initial");
         $("#correctOrIncorrect").text("Nope!");
-          $("#displayCorrect").css("display","initial");
+        $("#displayCorrect").css("display", "initial");
         $("#displayCorrect").text(currentQuestion.choices[correctIndex]);
-        
 
         triviaGame.answeredIncorrectly++
 
@@ -82,18 +82,27 @@ function handleAnswerClick(index) {
     triviaGame.questionNumber++;
     stopTimer();
 
-    setTimeout(function() {
+    
+
+    if (triviaGame.questionNumber >= triviaGame.triviaQuestions.length) {
+        gameStatistics();
+    }
+    else{
+        setTimeout(function() {
         resetTimer();
         DisplayQuestion(triviaGame.triviaQuestions[++questionNumber]);
-       
-    }, 5000);
-}
+
+    }, 2000);
+
+    }
+
+};
 
 
 
 function timer() {
     triviaGame.intervalId = setInterval(decrement, 1000);
-}
+};
 
 function decrement() {
     triviaGame.time--;
@@ -118,48 +127,56 @@ function decrement() {
             setTimeout(function() {
                 resetTimer();
                 DisplayQuestion(triviaGame.triviaQuestions[++questionNumber]);
-                  
 
 
-            }, 5000);
-    }
 
-}
+            }, 2000);
+    };
+
+};
 
 
 function resetTimer() {
 
     triviaGame.time = DEFAULT_TIMER;
     triviaGame.intervalId = null
-}
+};
 
 
 
 function stopTimer() {
     clearInterval(triviaGame.intervalId)
 
-}
+};
 
-/*function gameStatistics(){
-      var questionNumber = triviaGame["questionNumber"];
-        var currentQuestion = triviaGame.triviaQuestions[questionNumber];
-        
-        if(triviaGame.questionNumber === 9){
-         $("#gameResult").css("display", "none");
-        $("#questionContainer").css("display", "none");
-        $("#timerContainer").css("display", "none");
-        $("#gameStatistics").css("display", "initial");
-        $("#correctAnswers").text(triviaGame.answeredCorrectly);
-        $("#InCorrectAnswers").text(triviaGame.answeredIncorrectly);
-        $("#unAnswered").text(triviaGame.questionsUnanswered);
-        
-    }
-}*/
+function gameStatistics() {
+    $("#gameResult").css("display", "none");
+    $("#questionContainer").css("display", "none");
+    $("#timerContainer").css("display", "none");
+    $("#gameStatistics").css("display", "initial");
+    $("#correctAnswers").text(triviaGame.answeredCorrectly);
+    $("#InCorrectAnswers").text(triviaGame.answeredIncorrectly);
+    $("#unAnswered").text(triviaGame.questionsUnanswered);
+};
+
+function reset(){
+    triviaGame.answeredCorrectly =0;
+    triviaGame.answeredIncorrectly=0;
+    triviaGame.questionsUnanswered=0;
+    triviaGame.questionNumber =0;
+
+}
 
 
 
 $(function() {
 
+     $("#startOver").on("click", function(){
+        $("#gameStatistics").css("display", "none");  
+        reset()
+        DisplayQuestion(triviaGame.triviaQuestions[0]);
+
+    });
 
     $("#start").on("click", function() {
         $('#start').css("display", "none");
@@ -181,4 +198,6 @@ $(function() {
 
     });
 
-})
+
+
+});
