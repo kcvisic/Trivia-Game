@@ -1,24 +1,43 @@
 
 #jumbo {
-	background-color: #fa5975;
+	/*background-color: #f0f0c9c7;*/
+	background-color: #091313f7;
 	height: 350px;
-	color: white;
+	color: black;
 	font-family: cursive;
 }
 
 #navBar {
-	background-color: #fa5975;
-	color: white;
+	/*background-color: #fa5975;*/
+	color: #ea8da3;
 	font-family: cursive;
 }
-#start{
-	
+#navBarColor{
+	background-color: #091313f7;
 }
 
-#questionContainer {
-		display: none;
+h4{
+	color: white;
 }
-#gameResult{ 
+h3{
+	color: white;
+}
+#correctAnswers{
+	color: white;
+}
+#InCorrectAnswers{
+	color: white;
+}
+#unAnswered{
+	color: white;
+}
+#displayCorrect{
+	color: white;
+}
+#questionContainer {
+	display: none;
+}
+#gameResult{
 	display: none;
 
  }
@@ -27,29 +46,29 @@
  	margin-top: 15px;
  	display: none;
  }
-#option2 { 
+#option2 {
 margin-top: 10px;
  }
 
- #option3 { 
+ #option3 {
 	margin-top: 10px;
   }
 
   #timerContainer {
   		display: none;
-  	
+
   }
 
  .inline {
   	display: inline;
   }
  #giffy {
- 	width: 200px; 
+ 	width: 200px;
  	padding-bottom: 100px;
  }
  #giffContainer{
  	margin-left: 200px;
- 
+
  }
  #start {
 padding-top: 20px;

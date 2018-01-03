@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Trivia Game!</title>
-     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="assets/javascript/app.js"></script>
 </head>
 
 <body style="background-image:url(assets/images/question-marks.jpg);">
     <div class="container">
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default" id="navBarColor">
             <a class="navbar-brand" id="navBar" href=" # "> What's the Super Hero's Secret Identity?</a>
-			
+
 		</nav>
     </div>
     	<div class="container">
@@ -30,15 +30,15 @@
 					<div class="container" id="start">
     					<button  id="startBtn" class="btn btn-primary">Start</button>
     				</div>
-    		
-    				
+
+
     				<div class="container" id="questionContainer">
-    					
+
 
     					<div class="page-header ">
 							<span><h3 id="question">--Question???</h3></span>
     					</div>
-    		
+
     					<div class="row">
     						<button id="option1" class="btn btn-primary">Question#1</button>
     					</div>
@@ -49,20 +49,20 @@
     						<button id="option3" class="btn btn-primary">Question#3</button>
     					</div>
     				</div>
-    				
+
     				<div class= "container" id="gameResult" >
-    						
+
 							<div class="page-header ">
 								<span ><h3 id="correctOrIncorrect"></h3></span>
     						</div>
 							<div>
     							<span id="displayCorrect"></span>
     						</div>
-    						<div class="container" id="giffContainer">
+    						<!-- <div class="container" id="giffContainer">
                                 <iframe id="giffy" src="https://giphy.com/embed/vgErQP3GCIf7i" width="480" height="219" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/superheroes-vgErQP3GCIf7i"></a></p>
-    						</div>
-    				</div>		
-    							
+    						</div> -->
+    				</div>
+
     				<div class= "container" id="gameStatistics">
 						<div>
 							<h3>Game Results:</h3>
@@ -76,16 +76,16 @@
     					<div>
     						<h4 class="inline">Unanswered:</h4>
     						<span  class="badge" id="unAnswered">0</span>
-    					</div>	
+    					</div>
     					<div id="start" >
     						<button id="startOver" class="btn btn-primary">Start Over</button>
     					</div>
 
     				</div>
 
-    		</div>		
-		</div>				
-    				
-    				
+    		</div>
+		</div>
+
+
 </body>
 </html>
