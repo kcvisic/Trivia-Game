@@ -10,6 +10,8 @@ git clone git@github.com:kcvisic/Trivia-Game.git
  This application is using JavaScript for the logic and jQuery to manipulate HTML.
 ```
 
+## See the link here: https://trivia-superhero-secret-identy.herokuapp.com/
+
 ## Description
 
 ``` bash
